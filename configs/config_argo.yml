@@ -1,0 +1,51 @@
+save_dir: 'save_model'
+save_tag: '221216run'
+device: 'cuda:0'
+test_include: False
+num_epochs: 50
+modality: 'both'
+save_model: True
+save_interval: 1
+distributed: 1
+fpv_type: 'self'
+
+DATA:
+  obs_len: 20
+  pred_len: 30
+  batch_size: 64
+  subset: True
+  split: True
+
+DATALOADER:
+  data_dir: '../argoverse-data/processed'
+  calib_path: '../argoverse-data/vehicle_calibration_info.json'
+  num_worker: 0
+  shuffle: True
+
+MODEL:
+  hidden_size: 128
+  mode_num: 6
+  gt_decoder: True
+  cross_type: 1
+  random_mask: 0.0
+  cross_enc: False
+  self_rein: False
+  share_weight: True
+
+SOLVER:
+  lr: 0.001
+  bev_weight: 1.0
+  fpv_weight: 1.0
+  step_size: 50
+  scheduler_lr_type: 'm'
+  grad_clip: 0.01
+  patience: 20
+  milestones: (100, 160, 200, 240)
+
+EVAL:
+  optimization: True
+  MRminFDE: 0
+  cnt_sample: 9
+  opti_time: 0.1
+  core_num: 16
+

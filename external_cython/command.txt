@@ -1,0 +1,3 @@
+cython
+cython -a utils_cython.pyx
+python setup.py build_ext --inplace
